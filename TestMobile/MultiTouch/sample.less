@@ -16,17 +16,21 @@
             height: 100%;
             background-color: #fff;
             overflow: hidden;
+            position: absolute;
+            top:0;
+            left:0;
+            z-index:10;
 
             &::after {
                 content: "touch here";
                 text-align: center;
-                font-size: 16px;
+                font-size: 20px;
                 font-family: Calibri, Arial;
                 line-height: 24px;
                 color: #999;
                 width: 100%;
                 height: 20px;
-                line-height: 20px;
+                line-height: 25px;
                 position: absolute;
                 top: 50%;
                 left: 0;
@@ -34,16 +38,32 @@
             }
 
             .marker {
-                width: 30px;
-                height: 30px;
-                border: 4px solid #eee;
+                width: 80px;
+                height: 80px;
+                border: 10px solid #eee;
                 background-color: #ccc;
                 position: absolute;
                 margin: 0;
-                margin-top: -17px;
-                margin-left: -17px;
+                margin-top: -45px;
+                margin-left: -45px;
                 border-radius: 50%;
             }
+        }
+
+        .monitor{
+            display:none;
+            text-align: center;
+            font-size: 16px;
+            font-family: Calibri, Arial;
+            color: #eee;
+            background-color:#666;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            top:0;
+            left:0;
+            z-index:20;
         }
     }
 }

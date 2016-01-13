@@ -4,15 +4,19 @@
     }, false);
 
     var wrap = $('.wrap');
+    var monitor = $('.monitor');
     var markerHtml = '<div class="marker"></div>';
     var marker = {};
     var position = {};
 
     wrap[0].addEventListener('touchstart', function (e) {
         var touch = event.changedTouches[0];
-        console.log("[start] "+touch.identifier + ": " + touch.pageX + "  " + touch.pageY);
-        position[touch.identifier] = [touch.pageX, touch.pageY];
-        marker[touch.identifier] = $(markerHtml).appendTo(wrap);
+        //console.log("[start] "+touch.identifier + ": " + touch.pageX + "  " + touch.pageY);
+        for (var i = 0; i < event.changedTouches.length; i++) {
+            var touch = event.changedTouches[i];
+            position[touch.identifier] = [touch.pageX, touch.pageY];
+            marker[touch.identifier] = $(markerHtml).appendTo(wrap);
+        }
         if (animationId === null) showMarker();
     }, false);
 
@@ -24,30 +28,49 @@
     }, false);
     wrap[0].addEventListener('touchend', function (e) {
         var touch = event.changedTouches[0];
-        console.log("[end] " + touch.identifier + ": " + touch.pageX + "  " + touch.pageY);
-        delete position[touch.identifier];
-        hideMarker(touch.identifier);
+        //console.log("[end] " + touch.identifier + ": " + touch.pageX + "  " + touch.pageY);
+
+        for (var i = 0; i < event.changedTouches.length; i++) {
+            var touch = event.changedTouches[i];
+            marker[touch.identifier].remove();
+            delete position[touch.identifier];
+            delete marker[touch.identifier];
+            hideMarker(touch.identifier);
+        }
     }, false);
 
     // repeat refresh
     var animationId = null;
     function showMarker() {
-        for (var i in position) {
-            marker[i].css({
-                'left': position[i][0] + 'px',
-                'top': position[i][1] + 'px'
-            });
+        try {
+            var c = 0;
+            for (var i in position) {
+                c++;
+                if (!(i in marker)) continue;
+                    marker[i].css({
+                    'left': position[i][0] + 'px',
+                    'top': position[i][1] + 'px'
+                });
+            }
+            monitor.html("point: "+c);
+            monitor.show();
+            animationId = requestAnimationFrame(showMarker);
+        } catch (e) {
+            alert("show: " + e.message);
         }
-        animationId = requestAnimationFrame(showMarker);
     }
 
     function hideMarker(id) {
-        marker[id].remove();
-        if (animationId === null) return;
-        for (var i in position) {
-            return;
+        try{
+            if (animationId === null) return;
+            for (var i in position) {
+                return;
+            }
+            cancelAnimationFrame(animationId);
+            monitor.hide();
+            animationId = null;
+        } catch (e) {
+            alert("hide: " + e.message);
         }
-        cancelAnimationFrame(animationId);
-        animationId = null;
     };
 });
