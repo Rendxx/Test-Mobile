@@ -10,8 +10,6 @@
     var position = {};
 
     wrap[0].addEventListener('touchstart', function (e) {
-        var touch = event.changedTouches[0];
-        //console.log("[start] "+touch.identifier + ": " + touch.pageX + "  " + touch.pageY);
         for (var i = 0; i < event.changedTouches.length; i++) {
             var touch = event.changedTouches[i];
             position[touch.identifier] = [touch.pageX, touch.pageY];
