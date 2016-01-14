@@ -9,12 +9,14 @@
     "js": {
       "src": "src/js",
       "dest": "js",
-      "multi": "MultiTouch"
+      "multi": "MultiTouch",
+      "touch": "TouchPos"
     },
     "less": {
       "src": "src/less",
       "dest": "css",
-      "multi": "MultiTouch"
+      "multi": "MultiTouch",
+      "touch": "TouchPos"
     }
   },
 
@@ -27,7 +29,8 @@
       "#dest#/jquery": "#src#/jquery/dist/jquery*.{js,map}"
     },
     "less": {
-      "#multi#/sample": [ "#multi#/sample.less" ]
+      "#multi#/sample": [ "#multi#/sample.less" ],
+      "#touch#/sample": [ "#touch#/sample.less" ]
     },
     "js": {
     }

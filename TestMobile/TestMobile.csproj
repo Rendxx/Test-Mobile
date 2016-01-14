@@ -15,6 +15,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="gulpfile.js" />
+    <Content Include="TouchPos\sample.html" />
+    <Content Include="TouchPos\sample.js" />
     <Content Include="MultiTouch\sample.html" />
     <Content Include="MultiTouch\sample.js" />
   </ItemGroup>
@@ -24,6 +26,7 @@
   <ItemGroup>
     <None Include="bower.json" />
     <None Include="bundle.json" />
+    <Content Include="TouchPos\sample.less" />
     <None Include="MultiTouch\sample.less" />
     <None Include="package.json" />
   </ItemGroup>
